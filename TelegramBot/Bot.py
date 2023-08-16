@@ -44,7 +44,7 @@ def values_message(message: telebot.types.Message):
     text = 'Доступные валюты, согласно ОКВ — Общероссийскому классификатору валют:\n'
     for symbol, name in CurrencyConverter.get_dict_currency().items():
         text += f"{symbol} - {name}\n"
-    text += "\nВы также можете вернуться в стартовое меню /start \n " \
+    text += "\nВы также можете вернуться в стартовое меню /start \n" \
             "или заново прочитать описание /help"
     bot.reply_to(message, text)
 
