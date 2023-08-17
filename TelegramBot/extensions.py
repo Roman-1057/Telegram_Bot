@@ -60,9 +60,8 @@ class CurrencyConverter:
             exchange_rate = data['conversion_rates'][quote]  # Выбираем из словаря валюту,
         except KeyError:  # в которую конвертируем
             raise APIException(f"Неверная валюта: {quote}")
-
-        exchange_rate = data['conversion_rates'][quote]  # Выбираем из словаря валюту, в которую
-        converted_amount = amount * exchange_rate  # конвертируем и умножаем на amount
+            
+        converted_amount = amount * exchange_rate  # и умножаем на amount
 
         return f'{converted_amount:.6f}'  # Возврат результата с 6 знаками после запятой
 
