@@ -51,7 +51,14 @@ class CurrencyConverter:
         response = requests.get(url)  # Парсим полученные данные с сайта через ссылку,
         data = json.loads(response.text)  # с введенными данными
 
-        if quote not in data['conversion_rates']:  # Проверяем, есть ли валюта в словаре API
+        try:
+            quote not in data['conversion_rates']  # Проверяем, есть ли валюта в словаре API
+        except KeyError:
+            raise APIException(f"Неверная валюта: {base}")
+
+        try:
+            exchange_rate = data['conversion_rates'][quote]  # Выбираем из словаря валюту,
+        except KeyError:  # в которую конвертируем
             raise APIException(f"Неверная валюта: {quote}")
 
         exchange_rate = data['conversion_rates'][quote]  # Выбираем из словаря валюту, в которую
